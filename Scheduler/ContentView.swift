@@ -31,9 +31,9 @@ struct ContentView: View {
                            maxHeight: UIScreen.main.bounds.height * 0.3)
                     .padding(5)
                     Spacer()
+                
                     NavigationLink(destination: LoginView()) {
-
-                    Text("Go to Login Page")
+                    Text("Login")
                         .font(.headline)
                         .foregroundColor(.white)
                         .padding()
@@ -42,13 +42,25 @@ struct ContentView: View {
                         .cornerRadius(10)
                 }
                 .padding()
-                Spacer()
+                
+                NavigationLink(destination: SignupView()) {
+                Text("Sign up")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.blue)
+                    .cornerRadius(10)
+            }
+                .padding()
             }
             .navigationTitle("Home") // Title for the initial screen
             .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
+
+
 
 struct LoginView: View {
     @State private var username: String = ""
@@ -116,6 +128,7 @@ struct LoginView: View {
     }
     
     
+    
 
     func login(username: String, password: String) {
         // The URL of your Flask backend (adjust the IP address or hostname accordingly)
@@ -170,6 +183,132 @@ struct LoginView: View {
         task.resume()
     }
 }
+
+
+struct SignupView: View {
+    @State private var username: String = ""
+    @State private var password: String = ""
+    @State private var showAlert: Bool = false
+    @State private var showingLoginScreen = false
+    
+    var body: some View {
+        ZStack {
+            Color.blue
+                .ignoresSafeArea()
+            Circle()
+                .scale(1.7)
+                .foregroundColor(.white.opacity(0.15))
+            Circle()
+                .scale(1.35)
+                .foregroundColor(.white)
+            
+            VStack(spacing: 20) {
+                Text("Login")
+                    .font(.largeTitle)
+                    .bold()
+                    .padding()
+                
+                TextField("Username", text: $username)
+                    .padding()
+                    .frame(width: 300, height: 50)
+                    .background(Color.black.opacity(0.05))
+                    .cornerRadius(10)
+                
+                SecureField("Password", text: $password)
+                    .padding()
+                    .frame(width: 300, height: 50)
+                    .background(Color.black.opacity(0.05))
+                    .cornerRadius(10)
+                
+                Button(action: {
+                    login(username: username, password: password)
+                }) {
+                    Text("Login")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(width: 300, height: 50)
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                }
+                .padding()
+                .alert(isPresented: $showAlert) {
+                                Alert(
+                                    title: Text("Sorry 😔"),
+                                    message: Text("Wrong password. Please try again."),
+                                    dismissButton: .default(Text("OK"))
+                                )
+                            }
+
+                NavigationLink(destination: Text("You are logged in @\(username)"), isActive: $showingLoginScreen) {
+                    EmptyView()
+                }
+            }
+            .padding()
+            .navigationTitle("Login")
+        }
+        
+    }
+    
+    
+    
+
+    func login(username: String, password: String) {
+        // The URL of your Flask backend (adjust the IP address or hostname accordingly)
+        let url = URL(string: "http://127.0.0.1:5000/login")!
+        
+        // Prepare the JSON data to send in the request body
+        let body: [String: Any] = ["username": username, "password": password]
+        
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: body) else {
+            print("Error creating JSON data")
+            return
+        }
+        
+        
+        // Create the URLRequest with the POST method
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+        
+        // Create the data task using URLSession
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error: \(error)")
+                return
+            }
+            
+            // Check the response status code
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 200 {
+                    // Login successful, handle success (maybe save user data)
+                    showingLoginScreen = true
+                    
+                    // Optionally parse the response data to get user ID or other details
+                    if let data = data {
+                        do {
+                            let jsonResponse = try JSONSerialization.jsonObject(with: data, options: [])
+                            print("Response: \(jsonResponse)")
+                        } catch {
+                            print("Error parsing response")
+                        }
+                    }
+                } else {
+                    // Invalid credentials
+                    showAlert = true
+//                    print("Invalid credentials, status code: \(response.statusCode)")
+                }
+            }
+        }
+        
+        // Start the request
+        task.resume()
+    }
+}
+
+
+
 #Preview {
     ContentView()
 }   
