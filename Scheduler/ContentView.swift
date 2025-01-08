@@ -57,72 +57,38 @@ struct LoginView: View {
     @State private var showingLoginScreen = false
     
     var body: some View {
-        ZStack {
-            Color.blue
-                .ignoresSafeArea()
-            Circle()
-                .scale(1.7)
-                .foregroundColor(.white.opacity(0.15))
-            Circle()
-                .scale(1.35)
-                .foregroundColor(.white)
-                
-            VStack(spacing: 20) {
+        VStack(spacing: 20) {
+            Text("Login")
+                .font(.largeTitle)
+                .bold()
+                .padding()
+            
+            TextField("Username", text: $username)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding(.horizontal)
+            
+            SecureField("Password", text: $password)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding(.horizontal)
+            
+            Button(action: {
+                // Handle login action here
+                print("Login button tapped")
+            }) {
                 Text("Login")
-                    .font(.largeTitle)
-                    .bold()
+                    .font(.headline)
+                    .foregroundColor(.white)
                     .padding()
-                
-                TextField("Username", text: $username)
-                    .padding()
-                    .frame(width: 300, height: 50)
-                    .background(Color.black.opacity(0.05))
+                    .frame(maxWidth: .infinity)
+                    .background(Color.blue)
                     .cornerRadius(10)
-                    .border(.red, width: CGFloat(wrongUsername))
-                
-                SecureField("Password", text: $password)
-                    .padding()
-                    .frame(width: 300, height: 50)
-                    .background(Color.black.opacity(0.05))
-                    .cornerRadius(10)
-                    .border(.red, width: CGFloat(wrongPassword))
-                
-                Button(action: {
-                    authenticateUser(username: username, passwoord: password)
-                }) {
-                    Text("Login")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(width: 300, height: 50)
-                        .background(Color.blue)
-                        .cornerRadius(10)
-                }
-
-                NavigationLink(destination: Text("You are logged in @\(username)"), isActive: $showingLoginScreen) {
-                    EmptyView()
-            }
-                
-                
             }
             .padding()
-            .navigationTitle("Login")
-        }
-        
-    }
-    
-    
-    func authenticateUser(username: String, passwoord: String) {
-        if username == "Antonio" {
-            wrongUsername = 0
-            if passwoord == "12345" {
-                wrongPassword = 0
-                showingLoginScreen = true
-            } else {
-                wrongPassword = 2
-            }
             
+            Spacer()
         }
+        .padding()
+        .navigationTitle("Login")
     }
 }
 
