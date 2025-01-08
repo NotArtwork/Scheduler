@@ -29,29 +29,8 @@ struct ContentView: View {
                     .frame(maxWidth: UIScreen.main.bounds.width * 0.9,
                            maxHeight: UIScreen.main.bounds.height * 0.3)
                     .padding(5)
-<<<<<<< HEAD
-            Spacer()
-            Text("Self Defense | Boxing | Jiu Jitzu")
-                    .font(.system(size: 20, weight: .regular, design: .default))
-                    .foregroundColor(.white) // Text color
-                    .frame(maxWidth: .infinity) // Make the width span the screen
-                    .frame(height: 60) // Set the desired height
-                    .background(Color.blue)
-            Spacer()
-            Image("logo")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxWidth: UIScreen.main.bounds.width * 0.9,
-                           maxHeight: UIScreen.main.bounds.height * 0.3)
-                    .padding(5)
-            }
-        }.navigationBarHidden(true)
-    }
-    
-=======
-                Spacer()
-                NavigationLink(destination: LoginView()) {
->>>>>>> 70cb43d81cb8d308d0a06ce19235975faf5a8cc5
+                    Spacer()
+                    NavigationLink(destination: LoginView()) {
 
                     Text("Go to Login Page")
                         .font(.headline)
@@ -117,10 +96,3 @@ struct LoginView: View {
 #Preview {
     ContentView()
 }
-
-//struct ContentView_Preview:
-//    PreviewProvider {
-//    static var previews: some View{
-//        ContentView()
-//    }
-//}
