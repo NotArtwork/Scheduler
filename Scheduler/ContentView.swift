@@ -16,20 +16,19 @@ struct ContentView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(maxWidth: UIScreen.main.bounds.width * 0.8,
-                               maxHeight: UIScreen.main.bounds.height * 0.3)
+                               maxHeight: UIScreen.main.bounds.height * 0.1)
                         .padding(5)
-                Text("Self Defense | Boxing | Jiu Jitzu")
+                Text("Self Defense | Boxing | Jiu Jitzu | Kickboxing")
                         .font(.system(size: 20, weight: .regular, design: .default))
                         .foregroundColor(.white) // Text color
                         .frame(maxWidth: .infinity) // Make the width span the screen
-                        .frame(height: 60) // Set the desired height
+                        .frame(height: 40) // Set the desired height
                         .background(Color.blue)
-                Image("logo")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxWidth: UIScreen.main.bounds.width * 0.9,
-                           maxHeight: UIScreen.main.bounds.height * 0.3)
-                    .padding(5)
+                Image("img1")
+                    .resizable() // Make the image resizable
+                    .scaledToFill() // Ensures the image fills its frame
+                    .frame(width: UIScreen.main.bounds.width, height: 400) // Full screen width, custom height
+                    .clipped() // Ensures the image doesn't overflow its frame
                     Spacer()
                 
                     NavigationLink(destination: LoginView()) {
@@ -203,7 +202,7 @@ struct SignupView: View {
                 .foregroundColor(.white)
             
             VStack(spacing: 20) {
-                Text("Login")
+                Text("Sign up")
                     .font(.largeTitle)
                     .bold()
                     .padding()
@@ -221,9 +220,9 @@ struct SignupView: View {
                     .cornerRadius(10)
                 
                 Button(action: {
-                    login(username: username, password: password)
+                    register(username: username, password: password)
                 }) {
-                    Text("Login")
+                    Text("Sign up")
                         .font(.headline)
                         .foregroundColor(.white)
                         .padding()
@@ -233,13 +232,13 @@ struct SignupView: View {
                 }
                 .padding()
                 .alert(isPresented: $showAlert) {
-                                Alert(
-                                    title: Text("Sorry 😔"),
-                                    message: Text("Wrong password. Please try again."),
-                                    dismissButton: .default(Text("OK"))
-                                )
-                            }
-
+                    Alert(
+                        title: Text("Sorry 😔"),
+                        message: Text("Wrong password. Please try again."),
+                        dismissButton: .default(Text("OK"))
+                    )
+                }
+                
                 NavigationLink(destination: Text("You are logged in @\(username)"), isActive: $showingLoginScreen) {
                     EmptyView()
                 }
@@ -251,11 +250,9 @@ struct SignupView: View {
     }
     
     
-    
-
-    func login(username: String, password: String) {
+    func register(username: String, password: String) {
         // The URL of your Flask backend (adjust the IP address or hostname accordingly)
-        let url = URL(string: "http://127.0.0.1:5000/login")!
+        let url = URL(string: "http://127.0.0.1:5000/register")!
         
         // Prepare the JSON data to send in the request body
         let body: [String: Any] = ["username": username, "password": password]
@@ -264,7 +261,6 @@ struct SignupView: View {
             print("Error creating JSON data")
             return
         }
-        
         
         // Create the URLRequest with the POST method
         var request = URLRequest(url: url)
@@ -282,10 +278,9 @@ struct SignupView: View {
             // Check the response status code
             if let response = response as? HTTPURLResponse {
                 if response.statusCode == 200 {
-                    // Login successful, handle success (maybe save user data)
-                    showingLoginScreen = true
-                    
-                    // Optionally parse the response data to get user ID or other details
+                    // Registration successful, handle success
+                    print("Registration successful!")
+                    // Optionally, parse the response data to get user ID or other details
                     if let data = data {
                         do {
                             let jsonResponse = try JSONSerialization.jsonObject(with: data, options: [])
@@ -295,9 +290,10 @@ struct SignupView: View {
                         }
                     }
                 } else {
-                    // Invalid credentials
-                    showAlert = true
-//                    print("Invalid credentials, status code: \(response.statusCode)")
+                    // Registration failed, invalid credentials or username already taken
+                    print("Registration failed, status code: \(response.statusCode)")
+                    // You could also handle showing an alert or a specific error message
+                    // showAlert = true
                 }
             }
         }
@@ -306,9 +302,7 @@ struct SignupView: View {
         task.resume()
     }
 }
-
-
-
+    
 #Preview {
     ContentView()
 }   
