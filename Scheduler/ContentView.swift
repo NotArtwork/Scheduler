@@ -21,7 +21,7 @@ struct ContentView: View {
             Image("logo")
                     .resizable()
                     .scaledToFit()
-                    .frame(maxWidth: UIScreen.main.bounds.width * 0.8,
+                    .frame(maxWidth: UIScreen.main.bounds.width * 0.9,
                            maxHeight: UIScreen.main.bounds.height * 0.3)
                     .padding(5)
             Spacer()
@@ -31,6 +31,13 @@ struct ContentView: View {
                     .frame(maxWidth: .infinity) // Make the width span the screen
                     .frame(height: 60) // Set the desired height
                     .background(Color.blue)
+            Spacer()
+            Image("logo")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxWidth: UIScreen.main.bounds.width * 0.9,
+                           maxHeight: UIScreen.main.bounds.height * 0.3)
+                    .padding(5)
             }
         }.navigationBarHidden(true)
     }
