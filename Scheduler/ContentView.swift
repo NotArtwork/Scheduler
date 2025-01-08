@@ -54,8 +54,6 @@ struct LoginView: View {
     @State private var username: String = ""
     @State private var password: String = ""
     @State private var showAlert: Bool = false
-    @State private var wrongUsername = 0
-    @State private var wrongPassword = 0
     @State private var showingLoginScreen = false
     
     var body: some View {
@@ -80,17 +78,15 @@ struct LoginView: View {
                     .frame(width: 300, height: 50)
                     .background(Color.black.opacity(0.05))
                     .cornerRadius(10)
-//                    .border(.red, width: CGFloat(wrongUsername))
                 
                 SecureField("Password", text: $password)
                     .padding()
                     .frame(width: 300, height: 50)
                     .background(Color.black.opacity(0.05))
                     .cornerRadius(10)
-//                    .border(.red, width: CGFloat(wrongPassword))
                 
                 Button(action: {
-                    authenticateUser(username: username, passwoord: password)
+                    login(username: username, password: password)
                 }) {
                     Text("Login")
                         .font(.headline)
@@ -112,8 +108,6 @@ struct LoginView: View {
                 NavigationLink(destination: Text("You are logged in @\(username)"), isActive: $showingLoginScreen) {
                     EmptyView()
                 }
-                
-                
             }
             .padding()
             .navigationTitle("Login")
@@ -122,22 +116,7 @@ struct LoginView: View {
     }
     
     
-    func authenticateUser(username: String, passwoord: String) {
-        if username == "Antonio" {
-            wrongUsername = 0
-            if passwoord == "12345" {
-                wrongPassword = 0
-                showingLoginScreen = true
-            } else {
-                wrongPassword = 2
-                showAlert = true
-            }
-            
-        } else {
-            // Put an error "user doesn't exist
-        }
-    }
-    
+
     func login(username: String, password: String) {
         // The URL of your Flask backend (adjust the IP address or hostname accordingly)
         let url = URL(string: "http://127.0.0.1:5000/login")!
@@ -168,7 +147,7 @@ struct LoginView: View {
             if let response = response as? HTTPURLResponse {
                 if response.statusCode == 200 {
                     // Login successful, handle success (maybe save user data)
-                    print("Login successful!")
+                    showingLoginScreen = true
                     
                     // Optionally parse the response data to get user ID or other details
                     if let data = data {
@@ -181,7 +160,8 @@ struct LoginView: View {
                     }
                 } else {
                     // Invalid credentials
-                    print("Invalid credentials, status code: \(response.statusCode)")
+                    showAlert = true
+//                    print("Invalid credentials, status code: \(response.statusCode)")
                 }
             }
         }
