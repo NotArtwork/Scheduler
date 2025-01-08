@@ -53,6 +53,7 @@ struct ContentView: View {
 struct LoginView: View {
     @State private var username: String = ""
     @State private var password: String = ""
+    @State private var showAlert: Bool = false
     @State private var wrongUsername = 0
     @State private var wrongPassword = 0
     @State private var showingLoginScreen = false
@@ -79,14 +80,14 @@ struct LoginView: View {
                     .frame(width: 300, height: 50)
                     .background(Color.black.opacity(0.05))
                     .cornerRadius(10)
-                    .border(.red, width: CGFloat(wrongUsername))
+//                    .border(.red, width: CGFloat(wrongUsername))
                 
                 SecureField("Password", text: $password)
                     .padding()
                     .frame(width: 300, height: 50)
                     .background(Color.black.opacity(0.05))
                     .cornerRadius(10)
-                    .border(.red, width: CGFloat(wrongPassword))
+//                    .border(.red, width: CGFloat(wrongPassword))
                 
                 Button(action: {
                     authenticateUser(username: username, passwoord: password)
@@ -99,7 +100,15 @@ struct LoginView: View {
                         .background(Color.blue)
                         .cornerRadius(10)
                 }
-                
+                .padding()
+                .alert(isPresented: $showAlert) {
+                                Alert(
+                                    title: Text("Sorry 😔"),
+                                    message: Text("Wrong password. Please try again."),
+                                    dismissButton: .default(Text("OK"))
+                                )
+                            }
+
                 NavigationLink(destination: Text("You are logged in @\(username)"), isActive: $showingLoginScreen) {
                     EmptyView()
                 }
@@ -121,8 +130,11 @@ struct LoginView: View {
                 showingLoginScreen = true
             } else {
                 wrongPassword = 2
+                showAlert = true
             }
             
+        } else {
+            // Put an error "user doesn't exist
         }
     }
     
