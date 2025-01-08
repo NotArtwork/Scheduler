@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct ContentView: View {
     var body: some View {
@@ -57,54 +58,126 @@ struct LoginView: View {
     @State private var showingLoginScreen = false
     
     var body: some View {
-        VStack(spacing: 20) {
-            Text("Login")
-                .font(.largeTitle)
-                .bold()
-                .padding()
+        ZStack {
+            Color.blue
+                .ignoresSafeArea()
+            Circle()
+                .scale(1.7)
+                .foregroundColor(.white.opacity(0.15))
+            Circle()
+                .scale(1.35)
+                .foregroundColor(.white)
             
-            TextField("Username", text: $username)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding(.horizontal)
-            
-            SecureField("Password", text: $password)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding(.horizontal)
-            
-            Button(action: {
-                // Handle login action here
-                print("Login button tapped")
-            }) {
+            VStack(spacing: 20) {
                 Text("Login")
-                    .font(.headline)
-                    .foregroundColor(.white)
+                    .font(.largeTitle)
+                    .bold()
                     .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.blue)
+                
+                TextField("Username", text: $username)
+                    .padding()
+                    .frame(width: 300, height: 50)
+                    .background(Color.black.opacity(0.05))
                     .cornerRadius(10)
+                    .border(.red, width: CGFloat(wrongUsername))
+                
+                SecureField("Password", text: $password)
+                    .padding()
+                    .frame(width: 300, height: 50)
+                    .background(Color.black.opacity(0.05))
+                    .cornerRadius(10)
+                    .border(.red, width: CGFloat(wrongPassword))
+                
+                Button(action: {
+                    authenticateUser(username: username, passwoord: password)
+                }) {
+                    Text("Login")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(width: 300, height: 50)
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                }
+                
+                NavigationLink(destination: Text("You are logged in @\(username)"), isActive: $showingLoginScreen) {
+                    EmptyView()
+                }
+                
+                
             }
             .padding()
-            
-            Spacer()
+            .navigationTitle("Login")
         }
-        .padding()
-        .navigationTitle("Login")
+        
+    }
+    
+    
+    func authenticateUser(username: String, passwoord: String) {
+        if username == "Antonio" {
+            wrongUsername = 0
+            if passwoord == "12345" {
+                wrongPassword = 0
+                showingLoginScreen = true
+            } else {
+                wrongPassword = 2
+            }
+            
+        }
     }
     
     func login(username: String, password: String) {
-        // Backend URL
-        let url = URL(string:"127.0.0.1:5000")
-
+        // The URL of your Flask backend (adjust the IP address or hostname accordingly)
+        let url = URL(string: "http://127.0.0.1:5000/login")!
+        
+        // Prepare the JSON data to send in the request body
         let body: [String: Any] = ["username": username, "password": password]
-
-            guard let jsonData = try? JSONSerialization.data(withJSONObject: body) else {
+        
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: body) else {
             print("Error creating JSON data")
             return
         }
+        
+        
+        // Create the URLRequest with the POST method
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+        
+        // Create the data task using URLSession
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error: \(error)")
+                return
+            }
+            
+            // Check the response status code
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 200 {
+                    // Login successful, handle success (maybe save user data)
+                    print("Login successful!")
+                    
+                    // Optionally parse the response data to get user ID or other details
+                    if let data = data {
+                        do {
+                            let jsonResponse = try JSONSerialization.jsonObject(with: data, options: [])
+                            print("Response: \(jsonResponse)")
+                        } catch {
+                            print("Error parsing response")
+                        }
+                    }
+                } else {
+                    // Invalid credentials
+                    print("Invalid credentials, status code: \(response.statusCode)")
+                }
+            }
+        }
+        
+        // Start the request
+        task.resume()
     }
 }
-
-
 #Preview {
     ContentView()
-}
+}   
