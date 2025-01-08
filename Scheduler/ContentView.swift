@@ -13,25 +13,25 @@ struct ContentView: View {
         NavigationView {
             VStack {
                 Image("logo")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: UIScreen.main.bounds.width * 0.8,
-                               maxHeight: UIScreen.main.bounds.height * 0.1)
-                        .padding(5)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxWidth: UIScreen.main.bounds.width * 0.8,
+                           maxHeight: UIScreen.main.bounds.height * 0.1)
+                    .padding(5)
                 Text("Self Defense | Boxing | Jiu Jitzu | Kickboxing")
-                        .font(.system(size: 20, weight: .regular, design: .default))
-                        .foregroundColor(.white) // Text color
-                        .frame(maxWidth: .infinity) // Make the width span the screen
-                        .frame(height: 40) // Set the desired height
-                        .background(Color.blue)
+                    .font(.system(size: 20, weight: .regular, design: .default))
+                    .foregroundColor(.white) // Text color
+                    .frame(maxWidth: .infinity) // Make the width span the screen
+                    .frame(height: 40) // Set the desired height
+                    .background(Color.blue)
                 Image("img1")
                     .resizable() // Make the image resizable
                     .scaledToFill() // Ensures the image fills its frame
-                    .frame(width: UIScreen.main.bounds.width, height: 400) // Full screen width, custom height
+                    .frame(width: UIScreen.main.bounds.width, height: 500) // Full screen width, custom height
                     .clipped() // Ensures the image doesn't overflow its frame
-                    Spacer()
+                Spacer()
                 
-                    NavigationLink(destination: LoginView()) {
+                NavigationLink(destination: LoginView()) {
                     Text("Login")
                         .font(.headline)
                         .foregroundColor(.white)
@@ -42,18 +42,17 @@ struct ContentView: View {
                 }
                 .padding()
                 
-                NavigationLink(destination: SignupView()) {
-                Text("Sign up")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.blue)
-                    .cornerRadius(10)
+                
+                HStack {
+                    Text("Don't have an account?")
+                    NavigationLink(destination: SignupView()) {
+                        Text("Sign up")
+                            .foregroundColor(.blue) // Custom color for "Sign up"
+                            .underline() // Optional underline to indicate clickability
+                    }
+                }
+      
             }
-                .padding()
-            }
-            .navigationTitle("Home") // Title for the initial screen
             .navigationBarTitleDisplayMode(.inline)
         }
     }
@@ -66,6 +65,7 @@ struct LoginView: View {
     @State private var password: String = ""
     @State private var showAlert: Bool = false
     @State private var showingLoginScreen = false
+    
     
     var body: some View {
         ZStack {
@@ -109,14 +109,14 @@ struct LoginView: View {
                 }
                 .padding()
                 .alert(isPresented: $showAlert) {
-                                Alert(
-                                    title: Text("Sorry 😔"),
-                                    message: Text("Wrong password. Please try again."),
-                                    dismissButton: .default(Text("OK"))
-                                )
-                            }
-
-                NavigationLink(destination: Text("You are logged in @\(username)"), isActive: $showingLoginScreen) {
+                    Alert(
+                        title: Text("Sorry 😔"),
+                        message: Text("Wrong password. Please try again."),
+                        dismissButton: .default(Text("OK"))
+                    )
+                }
+                
+                NavigationLink(destination: SimplePage(), isActive: $showingLoginScreen) {
                     EmptyView()
                 }
             }
@@ -128,7 +128,7 @@ struct LoginView: View {
     
     
     
-
+    
     func login(username: String, password: String) {
         // The URL of your Flask backend (adjust the IP address or hostname accordingly)
         let url = URL(string: "http://127.0.0.1:5000/login")!
@@ -173,7 +173,7 @@ struct LoginView: View {
                 } else {
                     // Invalid credentials
                     showAlert = true
-//                    print("Invalid credentials, status code: \(response.statusCode)")
+                    //                    print("Invalid credentials, status code: \(response.statusCode)")
                 }
             }
         }
@@ -239,7 +239,7 @@ struct SignupView: View {
                     )
                 }
                 
-                NavigationLink(destination: Text("You are logged in @\(username)"), isActive: $showingLoginScreen) {
+                NavigationLink(destination: SimplePage(), isActive: $showingLoginScreen) {
                     EmptyView()
                 }
             }
@@ -302,7 +302,7 @@ struct SignupView: View {
         task.resume()
     }
 }
-    
+
 #Preview {
     ContentView()
-}   
+}
