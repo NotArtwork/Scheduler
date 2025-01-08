@@ -14,11 +14,18 @@ struct ContentView: View {
     @State private var wrongPassword = 0
     @State private var showingLoginScreen = false
     
+    
     var body: some View {
-        NavigationView {
+        NavigationView{
             VStack {
-                Image("KTSLogo")
-                Text("Self Defense | Boxing | Jiu Jitzu")
+            Image("logo")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxWidth: UIScreen.main.bounds.width * 0.8,
+                           maxHeight: UIScreen.main.bounds.height * 0.3)
+                    .padding(5)
+            Spacer()
+            Text("Self Defense | Boxing | Jiu Jitzu")
                     .font(.system(size: 20, weight: .regular, design: .default))
                     .foregroundColor(.white) // Text color
                     .frame(maxWidth: .infinity) // Make the width span the screen
@@ -27,10 +34,17 @@ struct ContentView: View {
             }
         }.navigationBarHidden(true)
     }
-
+    
 
 }
 
 #Preview {
     ContentView()
 }
+
+//struct ContentView_Preview:
+//    PreviewProvider {
+//    static var previews: some View{
+//        ContentView()
+//    }
+//}
