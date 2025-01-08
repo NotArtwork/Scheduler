@@ -217,7 +217,7 @@ func register(username: String, password: String) {
                 // showAlert = true
             }
         }
-    }
+    }   
     
     // Start the request
     task.resume()
