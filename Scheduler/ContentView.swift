@@ -90,6 +90,18 @@ struct LoginView: View {
         .padding()
         .navigationTitle("Login")
     }
+    
+    func login(username: String, password: String) {
+        // Backend URL
+        let url = URL(string:"127.0.0.1:5000")
+
+        let body: [String: Any] = ["username": username, "password": password]
+
+            guard let jsonData = try? JSONSerialization.data(withJSONObject: body) else {
+            print("Error creating JSON data")
+            return
+        }
+    }
 }
 
 
