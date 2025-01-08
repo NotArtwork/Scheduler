@@ -3,6 +3,9 @@ from flask_jwt_extended import JWTManager, create_access_token
 from flask_sqlalchemy import SQLAlchemy
 from models import db, User
 from config import Config
+from flask_cors import CORS
+
+
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -11,6 +14,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Disable modification tra
 
 db = SQLAlchemy(app)
 JWTManager(app)
+CORS(app)
 
 with app.app_context():
     db.create_all()
