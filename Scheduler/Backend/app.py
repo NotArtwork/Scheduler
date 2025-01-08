@@ -6,10 +6,15 @@ from config import Config
 
 app = Flask(__name__)
 app.config.from_object(Config)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'  # Example for SQLite
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Disable modification tracking (optional)
 
-# db.init_app(app)
 db = SQLAlchemy(app)
 JWTManager(app)
+
+with app.app_context():
+    db.create_all()
+    print("Database tables created successfully!")
 
 @app.route('/register', methods=['POST'])
 def register():
