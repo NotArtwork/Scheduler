@@ -23,7 +23,7 @@ struct SimplePage: View {
         .padding()
     }
 }
-
+//
 //struct SimplePage_Previews: PreviewProvider {
 //    static var previews: some View {
 //        SimplePage()

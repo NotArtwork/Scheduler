@@ -24,11 +24,12 @@ struct ContentView: View {
                     .frame(maxWidth: .infinity) // Make the width span the screen
                     .frame(height: 40) // Set the desired height
                     .background(Color.blue)
-                Image("img1")
-                    .resizable() // Make the image resizable
-                    .scaledToFill() // Ensures the image fills its frame
-                    .frame(width: UIScreen.main.bounds.width, height: 500) // Full screen width, custom height
-                    .clipped() // Ensures the image doesn't overflow its frame
+//                Image("img1")
+//                    .resizable() // Make the image resizable
+//                    .scaledToFill() // Ensures the image fills its frame
+//                    .frame(width: UIScreen.main.bounds.width, height: 500) // Full screen width, custom height
+//                    .clipped() // Ensures the image doesn't overflow its frame
+                ContinuousCarouselView()
                 Spacer()
                 
                 NavigationLink(destination: LoginView()) {
