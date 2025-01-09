@@ -11,45 +11,52 @@ import Foundation
 struct ContentView: View {
     var body: some View {
         NavigationView {
-            VStack {
-                Image("logo")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxWidth: UIScreen.main.bounds.width * 0.8,
-                           maxHeight: UIScreen.main.bounds.height * 0.1)
-//                    .padding(1)
-                Text("Self Defense | Boxing | Jiu Jitzu | Kickboxing")
-                    .font(.system(size: 20, weight: .regular, design: .default))
-                    .foregroundColor(.white) // Text color
-                    .frame(maxWidth: .infinity) // Make the width span the screen
-                    .frame(height: 40) // Set the desired height
-                    .background(Color.blue)
-            
-                ContinuousCarouselView()
-                
-                NavigationLink(destination: LoginView()) {
-                    Text("Login")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(maxWidth: .infinity)
+            ZStack {
+                Color.blue // Replace with your desired color
+                                .edgesIgnoringSafeArea(.all) // Extends the background to the edges
+                VStack {
+                    Image("logo")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: UIScreen.main.bounds.width * 0.8,
+                               maxHeight: UIScreen.main.bounds.height * 0.1)
+    //                    .padding(1)
+                    Text("Self Defense | Boxing | Jiu Jitzu | Kickboxing")
+                        .font(.system(size: 20, weight: .regular, design: .default))
+                        .foregroundColor(.white) // Text color
+                        .frame(maxWidth: .infinity) // Make the width span the screen
+                        .frame(height: 40) // Set the desired height
                         .background(Color.blue)
-                        .cornerRadius(10)
-                }
-                .padding(.horizontal)
                 
-                
-                HStack {
-                    Text("Don't have an account?")
-                    NavigationLink(destination: SignupView()) {
-                        Text("Sign up")
-                            .foregroundColor(.blue) // Custom color for "Sign up"
-                            .underline() // Optional underline to indicate clickability
+                    ContinuousCarouselView()
+                    
+                    NavigationLink(destination: LoginView()) {
+                        Text("Login")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.white.opacity(0.2
+                                                           ))
+                            .cornerRadius(40)
                     }
+                    .padding(.horizontal)
+                    
+                    
+                    HStack {
+                        Text("Don't have an account?")
+                            .foregroundColor(.white)
+                        NavigationLink(destination: SignupView()) {
+                            Text("Sign up")
+                                .foregroundColor(.white) // Custom color for "Sign up"
+                                .underline() // Optional underline to indicate clickability
+                        }
+                    }
+          
                 }
-      
+                .navigationBarTitleDisplayMode(.inline)
             }
-            .navigationBarTitleDisplayMode(.inline)
+           
         }
     }
 }
@@ -84,13 +91,13 @@ struct LoginView: View {
                     .padding()
                     .frame(width: 300, height: 50)
                     .background(Color.black.opacity(0.05))
-                    .cornerRadius(10)
+                    .cornerRadius(40)
                 
                 SecureField("Password", text: $password)
                     .padding()
                     .frame(width: 300, height: 50)
                     .background(Color.black.opacity(0.05))
-                    .cornerRadius(10)
+                    .cornerRadius(40)
                 
                 Button(action: {
                     login(username: username, password: password)
@@ -101,7 +108,7 @@ struct LoginView: View {
                         .padding()
                         .frame(width: 300, height: 50)
                         .background(Color.blue)
-                        .cornerRadius(10)
+                        .cornerRadius(40)
                 }
                 .padding()
                 .alert(isPresented: $showAlert) {
@@ -207,13 +214,13 @@ struct SignupView: View {
                     .padding()
                     .frame(width: 300, height: 50)
                     .background(Color.black.opacity(0.05))
-                    .cornerRadius(10)
+                    .cornerRadius(40)
                 
                 SecureField("Password", text: $password)
                     .padding()
                     .frame(width: 300, height: 50)
                     .background(Color.black.opacity(0.05))
-                    .cornerRadius(10)
+                    .cornerRadius(40)
                 
                 Button(action: {
                     register(username: username, password: password)
@@ -224,7 +231,7 @@ struct SignupView: View {
                         .padding()
                         .frame(width: 300, height: 50)
                         .background(Color.blue)
-                        .cornerRadius(10)
+                        .cornerRadius(40)
                 }
                 .padding()
                 .alert(isPresented: $showAlert) {

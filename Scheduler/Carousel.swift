@@ -71,58 +71,6 @@ struct ContinuousCarouselView_Previews: PreviewProvider {
     }
 }
 
-// NICE BUT NOT SEAMLESS
-
-//struct ContinuousCarouselView: View {
-//    private let images = ["img1", "img1", "img1", "img1"] // Replace with your image names
-//    private let imageWidth: CGFloat = 300 // Width of each image
-//    private let spacing: CGFloat = -40 // Spacing between images
-//    @State private var offset: CGFloat = 0 // Tracks the scroll position
-//    private let timer = Timer.publish(every: 0.03, on: .main, in: .common).autoconnect() // Timer for smooth scrolling
-//
-//    var body: some View {
-//        GeometryReader { geometry in
-//            let totalImageWidth = imageWidth + spacing
-//            let totalContentWidth = CGFloat(images.count) * totalImageWidth
-//            let extendedImages = images + images // Duplicate the images to create a seamless effect
-//            
-//            HStack(spacing: spacing) {
-//                ForEach(0..<extendedImages.count, id: \.self) { index in
-//                    Image(extendedImages[index % images.count])
-//                        .resizable()
-//                        .scaledToFill()
-//                        .frame(width: 350, height: 450) // Set desired size
-//                        .clipShape(Parallelogram(skewAmount: 0.2)) // Apply parallelogram shape
-////                        .overlay(
-////                            Parallelogram(skewAmount: 0.2)
-////                                .stroke(Color.blue, lineWidth: 4) // Optional border
-////                        )
-//
-//                }
-//            }
-//            .offset(x: offset)
-//            .onReceive(timer) { _ in
-//                withAnimation(.linear(duration: 0.03)) {
-//                    offset -= 3 // Adjust speed by changing the value
-//                    
-//                    if abs(offset) >= totalContentWidth {
-//                        // Reset offset seamlessly without visual jump
-//                        offset = 0
-//                    }
-//                }
-//            }
-//        }
-//        .frame(height: 500) // Adjust carousel height
-//        .clipped() // Prevent content overflow
-//    }
-//}
-//
-//struct ContinuousCarouselView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContinuousCarouselView()
-//    }
-//}
-
 
 // SLIDE SHOW
 
