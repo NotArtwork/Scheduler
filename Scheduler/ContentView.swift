@@ -17,20 +17,15 @@ struct ContentView: View {
                     .scaledToFit()
                     .frame(maxWidth: UIScreen.main.bounds.width * 0.8,
                            maxHeight: UIScreen.main.bounds.height * 0.1)
-                    .padding(5)
+//                    .padding(1)
                 Text("Self Defense | Boxing | Jiu Jitzu | Kickboxing")
                     .font(.system(size: 20, weight: .regular, design: .default))
                     .foregroundColor(.white) // Text color
                     .frame(maxWidth: .infinity) // Make the width span the screen
                     .frame(height: 40) // Set the desired height
                     .background(Color.blue)
-//                Image("img1")
-//                    .resizable() // Make the image resizable
-//                    .scaledToFill() // Ensures the image fills its frame
-//                    .frame(width: UIScreen.main.bounds.width, height: 500) // Full screen width, custom height
-//                    .clipped() // Ensures the image doesn't overflow its frame
+            
                 ContinuousCarouselView()
-                Spacer()
                 
                 NavigationLink(destination: LoginView()) {
                     Text("Login")
@@ -41,7 +36,7 @@ struct ContentView: View {
                         .background(Color.blue)
                         .cornerRadius(10)
                 }
-                .padding()
+                .padding(.horizontal)
                 
                 
                 HStack {
