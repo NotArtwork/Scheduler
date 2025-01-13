@@ -7,25 +7,83 @@
 
 import SwiftUI
 
-struct SimplePage: View {
+struct UserPageView: View {
     var body: some View {
-        VStack {
-            Text("Hello, user")
-                .font(.largeTitle)
-                .padding()
-
-            Image(systemName: "person.circle") // You can replace this with your image
-                .resizable()
-                .scaledToFit()
-                .frame(width: 150, height: 150)
-                .padding()
+        NavigationView {
+            VStack(alignment: .leading, spacing: 20) {
+                // Top Bar
+                HStack {
+                    Image("user")
+                        .resizable()
+                        .frame(width: 50, height: 50)
+                        .clipShape(Circle())
+                        .padding(.leading)
+                    
+                    Spacer()
+                    
+                    HStack(spacing: 20) {
+                        Button(action: {
+                            print("Search tapped")
+                        }) {
+                            Image(systemName: "magnifyingglass")
+                                .font(.title2)
+                                .foregroundColor(.primary)
+                        }
+                        
+                        Button(action: {
+                            print("Menu tapped")
+                        }) {
+                            Image(systemName: "line.horizontal.3")
+                                .font(.title2)
+                                .foregroundColor(.primary)
+                        }
+                    }
+                    .padding(.trailing)
+                }
+                .padding(.top)
+                
+                SectionView(title: "NEWS")
+                
+                SectionView(title: "CLASSES")
+                
+                SectionView(title: "TUTORIALS")
+                
+                Spacer()
+            }
+            .navigationBarHidden(true)
         }
-        .padding()
     }
 }
-//
-//struct SimplePage_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SimplePage()
-//    }
-//}
+
+struct SectionView: View {
+    let title: String
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text(title)
+                .font(.headline)
+                .padding(.horizontal)
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 15) {
+                    ForEach(0..<10) { index in
+                        Image("placeholder")
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 120, height: 120)
+                            .cornerRadius(10)
+                            .shadow(radius: 2)
+                    }
+                }
+                .padding(.horizontal)
+            }
+        }
+    }
+}
+
+// Preview
+struct UserPageView_Previews: PreviewProvider {
+    static var previews: some View {
+        UserPageView()
+    }
+}

@@ -12,8 +12,16 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color.blue // Replace with your desired color
-                                .edgesIgnoringSafeArea(.all) // Extends the background to the edges
+                Color(
+                    .sRGB,
+                    red: 0 / 255,
+                    green: 0 / 255,
+                    blue: 0 / 255,
+                    opacity: 1.0 // Alpha
+                        )
+                    .edgesIgnoringSafeArea(.all)
+//                Color.blue // Replace with your desired color
+//                                .edgesIgnoringSafeArea(.all) // Extends the background to the edges
                 VStack {
                     Image("logo")
                         .resizable()
@@ -26,7 +34,7 @@ struct ContentView: View {
                         .foregroundColor(.white) // Text color
                         .frame(maxWidth: .infinity) // Make the width span the screen
                         .frame(height: 40) // Set the desired height
-                        .background(Color.blue)
+//                        .background(Color.blue)
                 
                     ContinuousCarouselView()
                     
@@ -119,7 +127,7 @@ struct LoginView: View {
                     )
                 }
                 
-                NavigationLink(destination: SimplePage(), isActive: $showingLoginScreen) {
+                NavigationLink(destination: UserPageView(), isActive: $showingLoginScreen) {
                     EmptyView()
                 }
             }
@@ -242,7 +250,7 @@ struct SignupView: View {
                     )
                 }
                 
-                NavigationLink(destination: SimplePage(), isActive: $showingLoginScreen) {
+                NavigationLink(destination: UserPageView(), isActive: $showingLoginScreen) {
                     EmptyView()
                 }
             }
