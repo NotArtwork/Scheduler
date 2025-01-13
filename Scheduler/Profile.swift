@@ -27,38 +27,8 @@ struct UserProfileView: View {
                     .padding(.horizontal)
                 }
                 
-                // Fixed Top Bar
-                HStack {
-                    Image("profileImage")
-                        .resizable()
-                        .frame(width: 50, height: 50)
-                        .clipShape(Circle())
-                        .padding(.leading)
-                    
-                    Spacer()
-                    
-                    HStack(spacing: 20) {
-                        Button(action: {
-                            print("Search tapped")
-                        }) {
-                            Image(systemName: "magnifyingglass")
-                                .font(.title2)
-                                .foregroundColor(.primary)
-                        }
-                        
-                        Button(action: {
-                            print("Menu tapped")
-                        }) {
-                            Image(systemName: "line.horizontal.3")
-                                .font(.title2)
-                                .foregroundColor(.primary)
-                        }
-                    }
-                    .padding(.trailing)
-                }
-                .frame(height: 80) // Ensure height matches the placeholder
-                .background(Color.white.shadow(radius: 2))
-                .edgesIgnoringSafeArea(.top) // Extend into the safe area
+                NavigationBarView()
+                .background(Color.white)
             }
             .navigationBarHidden(true)
         }
