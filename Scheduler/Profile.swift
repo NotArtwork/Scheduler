@@ -10,21 +10,26 @@ struct UserProfileView: View {
     var body: some View {
         NavigationView {
             ZStack(alignment: .top) {
-                // Scrollable Content
                 ScrollView {
                     VStack(alignment: .leading, spacing: 20) {
-                        // Adjusted spacing
-                        Color.clear.frame(height: 80) // Reduced height to match the top bar size
+                        Color.clear.frame(height: 80)
                         
                         // Sections with images
-                        ProfileSectionView(title: "My Classes", images: ["class1", "class2", "class3"])
+                        ProfileSectionView(title: "My Classes", images: ["img1", "img2", "img3", "img4", "img5"])
                         ProfileSectionView(title: "Subscription", images: ["sub1", "sub2", "sub3"])
-                        ProfileSectionView(title: "Messages", images: ["msg1", "msg2", "msg3"])
-                        ProfileSectionView(title: "My Tutorials", images: ["tutorial1", "tutorial2", "tutorial3"])
+                        
+                        UserMessagesPreview(users: [
+                                                    User(id: "1", firstName: "John", profileImage: "user"),
+                                                    User(id: "2", firstName: "Emma", profileImage: "user"),
+                                                    User(id: "3", firstName: "Ryan", profileImage: nil),
+                                                    User(id: "4", firstName: "Sophia", profileImage: "user"),
+                                                    User(id: "4", firstName: "Antonio", profileImage: "user")
+                                                ])
+                        ProfileSectionView(title: "My Tutorials", images: ["img1", "img2", "img3", "img4", "img5"])
                         
                         Spacer() // Optional bottom padding
                     }
-                    .padding(.horizontal)
+//            
                 }
                 
                 NavigationBarView()
@@ -33,6 +38,49 @@ struct UserProfileView: View {
             .navigationBarHidden(true)
         }
     }
+}
+
+struct UserMessagesPreview: View {
+    let users: [User] // List of users for displaying profile images and names
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Messages".uppercased())
+                .font(.headline)
+                .padding(.horizontal)
+            
+            // Horizontal Scroll View for user profile images
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 15) {
+                    ForEach(users, id: \.id) { user in
+                        VStack {
+                            // Profile Image
+                            Image(user.profileImage ?? "user")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 70, height: 70)
+                                .clipShape(Circle())
+                                .shadow(radius: 1)
+                            
+                            // User First Name
+                            Text(user.firstName)
+                                .font(.subheadline)
+                                .foregroundColor(.primary)
+                                .padding(.top, 5)
+                        }
+                    }
+                }
+                .padding(.horizontal)
+            }
+        }
+    }
+}
+
+// User model for testing
+struct User: Identifiable {
+    var id: String
+    var firstName: String
+    var profileImage: String?
 }
 
 struct ProfileSectionView: View {

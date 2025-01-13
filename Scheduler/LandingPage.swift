@@ -26,7 +26,7 @@ struct UserPageView: View {
                         
                         Spacer() // Optional bottom padding
                     }
-                    .padding(.horizontal)
+                
                 }
                 
                 NavigationBarView()
