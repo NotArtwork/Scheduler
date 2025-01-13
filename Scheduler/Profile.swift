@@ -1,28 +1,26 @@
 //
-//  LandingPage.swift
+//  Profile.swift
 //  Scheduler
 //
-//  Created by Alina Pisarenko on 1/8/25.
+//  Created by Alina Pisarenko on 1/12/25.
 //
-
 import SwiftUI
 
-struct UserPageView: View {
+struct UserProfileView: View {
     var body: some View {
         NavigationView {
             ZStack(alignment: .top) {
                 // Scrollable Content
                 ScrollView {
                     VStack(alignment: .leading, spacing: 20) {
-                        
-                        Color.clear.frame(height: 80)
+                        // Adjusted spacing
+                        Color.clear.frame(height: 80) // Reduced height to match the top bar size
                         
                         // Sections with images
-                        SectionView(title: "News", images: ["img1", "img2", "img3", "img4", "img5"])
-                        SectionView(title: "Classes", images: ["img1", "img2", "img3", "img4", "img5"])
-                        SectionView(title: "Tutorials", images: ["img1", "img2", "img3", "img4", "img5"])
-                        SectionView(title: "Events", images: ["img1", "img2", "img3", "img4", "img5"])
-                        SectionView(title: "Articles", images: ["img1", "img2", "img3", "img4", "img5"])
+                        ProfileSectionView(title: "My Classes", images: ["class1", "class2", "class3"])
+                        ProfileSectionView(title: "Subscription", images: ["sub1", "sub2", "sub3"])
+                        ProfileSectionView(title: "Messages", images: ["msg1", "msg2", "msg3"])
+                        ProfileSectionView(title: "My Tutorials", images: ["tutorial1", "tutorial2", "tutorial3"])
                         
                         Spacer() // Optional bottom padding
                     }
@@ -31,7 +29,7 @@ struct UserPageView: View {
                 
                 // Fixed Top Bar
                 HStack {
-                    Image("user")
+                    Image("profileImage")
                         .resizable()
                         .frame(width: 50, height: 50)
                         .clipShape(Circle())
@@ -58,17 +56,16 @@ struct UserPageView: View {
                     }
                     .padding(.trailing)
                 }
-//                .frame(height: 100)
-                .padding()
-                .background(Color.white)
-                
+                .frame(height: 80) // Ensure height matches the placeholder
+                .background(Color.white.shadow(radius: 2))
+                .edgesIgnoringSafeArea(.top) // Extend into the safe area
             }
             .navigationBarHidden(true)
         }
     }
 }
 
-struct SectionView: View {
+struct ProfileSectionView: View {
     let title: String
     let images: [String]
     
@@ -97,8 +94,8 @@ struct SectionView: View {
 }
 
 // Preview
-struct UserPageView_Previews: PreviewProvider {
+struct UserProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        UserPageView()
+        UserProfileView()
     }
 }
