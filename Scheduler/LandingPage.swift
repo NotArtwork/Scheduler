@@ -10,8 +10,26 @@ import SwiftUI
 struct UserPageView: View {
     var body: some View {
         NavigationView {
-            VStack(alignment: .leading, spacing: 20) {
-                // Top Bar
+            ZStack(alignment: .top) {
+                // Scrollable Content
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 20) {
+                        // Add some spacing to push content below the fixed top bar
+                        Spacer().frame(height: 100)
+                        
+                        // Sections with images
+                        SectionView(title: "News", images: ["img1", "img2", "img3", "img4", "img5"])
+                        SectionView(title: "Classes", images: ["img1", "img2", "img3", "img4", "img5"])
+                        SectionView(title: "Tutorials", images: ["img1", "img2", "img3", "img4", "img5"])
+                        SectionView(title: "Events", images: ["img1", "img2", "img3", "img4", "img5"])
+                        SectionView(title: "Articles", images: ["img1", "img2", "img3", "img4", "img5"])
+                        
+                        Spacer() // Optional bottom padding
+                    }
+                    .padding(.horizontal)
+                }
+                
+                // Fixed Top Bar
                 HStack {
                     Image("user")
                         .resizable()
@@ -40,15 +58,8 @@ struct UserPageView: View {
                     }
                     .padding(.trailing)
                 }
-                .padding(.top)
-                
-                SectionView(title: "NEWS")
-                
-                SectionView(title: "CLASSES")
-                
-                SectionView(title: "TUTORIALS")
-                
-                Spacer()
+//                .frame(height: 100)
+                .background(Color.white)
             }
             .navigationBarHidden(true)
         }
@@ -57,20 +68,22 @@ struct UserPageView: View {
 
 struct SectionView: View {
     let title: String
+    let images: [String]
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text(title)
+            Text(title.uppercased())
                 .font(.headline)
                 .padding(.horizontal)
             
+            // Horizontal Scroll View
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 15) {
-                    ForEach(0..<10) { index in
-                        Image("placeholder")
+                    ForEach(images, id: \.self) { imageName in
+                        Image(imageName)
                             .resizable()
                             .scaledToFill()
-                            .frame(width: 120, height: 120)
+                            .frame(width: 250, height: 160)
                             .cornerRadius(10)
                             .shadow(radius: 2)
                     }
