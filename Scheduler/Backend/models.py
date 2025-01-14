@@ -17,16 +17,19 @@ class User(db.Model):
         return bcrypt.check_password_hash(self.password_hash, password)
 
 class Class(db.Model):
-    __tablename__ = 'classes'  # Table name in the database
-    
+    # __tablename__ = 'classes'
+
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String(100), nullable=False)
-    start_time = db.Column(db.DateTime, nullable=False)
-    end_time = db.Column(db.DateTime, nullable=False)
-    location = db.Column(db.String(100), nullable=False)
     description = db.Column(db.Text, nullable=True)
+    capacity = db.Column(db.Integer, nullable=False)
+    date = db.Column(db.Date, nullable=False)  # Date field for the class
+    start_time = db.Column(db.Time, nullable=False)
+    end_time = db.Column(db.Time, nullable=False)
+    location = db.Column(db.String(100), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
 
     def __repr__(self):
-        return f"<Class(id={self.id}, title={self.title}, location={self.location})>"
+        return f"<Class(id={self.id}, title={self.title}, date={self.date})>"
+
