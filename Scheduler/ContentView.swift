@@ -17,14 +17,14 @@ struct ContentView: View {
                     .scaledToFit()
                     .frame(maxWidth: UIScreen.main.bounds.width * 0.8,
                            maxHeight: UIScreen.main.bounds.height * 0.1)
-//                    .padding(1)
+                    .padding(1)
                 Text("Self Defense | Boxing | Jiu Jitzu | Kickboxing")
                     .font(.system(size: 20, weight: .regular, design: .default))
                     .foregroundColor(.white) // Text color
                     .frame(maxWidth: .infinity) // Make the width span the screen
                     .frame(height: 40) // Set the desired height
                     .background(Color.blue)
-            
+        
                 ContinuousCarouselView()
                 
                 NavigationLink(destination: LoginView()) {
