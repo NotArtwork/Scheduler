@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 struct TrainingScheduleView: View {
     @State private var selectedDate: Date = Date()
@@ -88,3 +89,73 @@ struct TrainingScheduleView_Previews: PreviewProvider {
     }
 }
 
+
+struct ClassData: Decodable {
+    let id: Int
+    let title: String
+    let date: String
+    let start_time: String
+    let end_time: String
+    let location: String
+}
+
+class ClassesViewController: UIViewController {
+
+    // Declare a property to hold the classes data
+    var classes: [ClassData] = []
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Call the function to load classes when the view is loaded
+        fetchClasses()
+    }
+
+    func fetchClasses() {
+        // Set the URL for your Flask API endpoint
+        guard let url = URL(string: "http://127.0.0.1:5000/classes") else {
+            print("Invalid URL")
+            return
+        }
+
+        // Create a URLSession to make the network request
+        let session = URLSession.shared
+        let task = session.dataTask(with: url) { data, response, error in
+            // Check for errors
+            if let error = error {
+                print("Error fetching data: \(error)")
+                return
+            }
+
+            // Check if the response is valid
+            guard let data = data else {
+                print("No data received")
+                return
+            }
+
+            // Try to decode the data into an array of ClassData objects
+            do {
+                let decoder = JSONDecoder()
+                let classes = try decoder.decode([ClassData].self, from: data)
+
+                // Update the UI on the main thread
+                DispatchQueue.main.async {
+                    self.classes = classes
+                    self.displayClasses()
+                }
+            } catch {
+                print("Error decoding data: \(error)")
+            }
+        }
+
+        // Start the network request
+        task.resume()
+    }
+
+    func displayClasses() {
+        // Here you can update the UI (e.g., display the classes in a table view)
+        // For example, if you have a table view:
+        for classItem in classes {
+            print("Class: \(classItem.title), Date: \(classItem.date), Time: \(classItem.start_time)-\(classItem.end_time), Location: \(classItem.location)")
+        }
+    }
+}
