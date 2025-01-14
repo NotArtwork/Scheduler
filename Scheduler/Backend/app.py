@@ -14,7 +14,6 @@ app.config.from_object(Config)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///127.0.0.1:5000'  # Example for SQLite
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Disable modification tracking (optional)
 
-# db = SQLAlchemy(app)
 JWTManager(app)
 CORS(app)
 
