@@ -288,9 +288,10 @@ struct SignupView: View {
             
             // Check the response status code
             if let response = response as? HTTPURLResponse {
-                if response.statusCode == 200 {
+                if response.statusCode == 201 {
                     // Registration successful, handle success
                     print("Registration successful!")
+                    showingLoginScreen = true
                     // Optionally, parse the response data to get user ID or other details
                     if let data = data {
                         do {
