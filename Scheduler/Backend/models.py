@@ -17,7 +17,7 @@ class User(db.Model):
         return bcrypt.check_password_hash(self.password_hash, password)
 
 class Class(db.Model):
-    # __tablename__ = 'classes'
+    __tablename__ = 'classes'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String(100), nullable=False)

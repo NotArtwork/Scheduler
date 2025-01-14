@@ -10,10 +10,10 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 app.config.from_object(Config)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///127.0.0.1:5000'  # Example for SQLite
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db' # Example for SQLite
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Disable modification tracking (optional)
 
-db = SQLAlchemy(app)
+db.init_app(app)  # Using the db instance from models.py
 JWTManager(app)
 CORS(app)
 

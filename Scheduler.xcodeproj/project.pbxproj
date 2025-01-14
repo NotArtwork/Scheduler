@@ -9,13 +9,6 @@
 /* Begin PBXBuildFile section */
 		4370C9D92D36CA250064A88A /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4370C9D82D36CA250064A88A /* Calendar.swift */; };
 		4370C9DB2D36CC930064A88A /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4370C9DA2D36CC930064A88A /* Profile.swift */; };
-		6E526BC82D30332C00ADEED2 /* app.cpython-312.pyc in Resources */ = {isa = PBXBuildFile; fileRef = 6E526BA92D30332C00ADEED2 /* app.cpython-312.pyc */; };
-		6E526BC92D30332C00ADEED2 /* config.cpython-39.pyc in Resources */ = {isa = PBXBuildFile; fileRef = 6E526BAA2D30332C00ADEED2 /* config.cpython-39.pyc */; };
-		6E526BCA2D30332C00ADEED2 /* config.cpython-312.pyc in Resources */ = {isa = PBXBuildFile; fileRef = 6E526BAB2D30332C00ADEED2 /* config.cpython-312.pyc */; };
-		6E526BCB2D30332C00ADEED2 /* models.cpython-39.pyc in Resources */ = {isa = PBXBuildFile; fileRef = 6E526BAC2D30332C00ADEED2 /* models.cpython-39.pyc */; };
-		6E526BCC2D30332C00ADEED2 /* models.cpython-312.pyc in Resources */ = {isa = PBXBuildFile; fileRef = 6E526BAD2D30332C00ADEED2 /* models.cpython-312.pyc */; };
-		6E526BCD2D30332C00ADEED2 /* 127.0.0.1:5000 in Resources */ = {isa = PBXBuildFile; fileRef = 6E526BAF2D30332C00ADEED2 /* 127.0.0.1:5000 */; };
-		6E526BCE2D30332C00ADEED2 /* db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 6E526BB02D30332C00ADEED2 /* db.sqlite */; };
 		6E526BD02D30332C00ADEED2 /* app.py in Resources */ = {isa = PBXBuildFile; fileRef = 6E526BB32D30332C00ADEED2 /* app.py */; };
 		6E526BD12D30332C00ADEED2 /* config.py in Resources */ = {isa = PBXBuildFile; fileRef = 6E526BB42D30332C00ADEED2 /* config.py */; };
 		6E526BD32D30332C00ADEED2 /* init_db.py in Resources */ = {isa = PBXBuildFile; fileRef = 6E526BB62D30332C00ADEED2 /* init_db.py */; };
@@ -57,13 +50,6 @@
 /* Begin PBXFileReference section */
 		4370C9D82D36CA250064A88A /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
 		4370C9DA2D36CC930064A88A /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
-		6E526BA92D30332C00ADEED2 /* app.cpython-312.pyc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "app.cpython-312.pyc"; sourceTree = "<group>"; };
-		6E526BAA2D30332C00ADEED2 /* config.cpython-39.pyc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "config.cpython-39.pyc"; sourceTree = "<group>"; };
-		6E526BAB2D30332C00ADEED2 /* config.cpython-312.pyc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "config.cpython-312.pyc"; sourceTree = "<group>"; };
-		6E526BAC2D30332C00ADEED2 /* models.cpython-39.pyc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "models.cpython-39.pyc"; sourceTree = "<group>"; };
-		6E526BAD2D30332C00ADEED2 /* models.cpython-312.pyc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "models.cpython-312.pyc"; sourceTree = "<group>"; };
-		6E526BAF2D30332C00ADEED2 /* 127.0.0.1:5000 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "127.0.0.1:5000"; sourceTree = "<group>"; };
-		6E526BB02D30332C00ADEED2 /* db.sqlite */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = db.sqlite; sourceTree = "<group>"; };
 		6E526BB32D30332C00ADEED2 /* app.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = app.py; sourceTree = "<group>"; };
 		6E526BB42D30332C00ADEED2 /* config.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = config.py; sourceTree = "<group>"; };
 		6E526BB62D30332C00ADEED2 /* init_db.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = init_db.py; sourceTree = "<group>"; };
@@ -121,23 +107,9 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
-		6E526BAE2D30332C00ADEED2 /* __pycache__ */ = {
-			isa = PBXGroup;
-			children = (
-				6E526BA92D30332C00ADEED2 /* app.cpython-312.pyc */,
-				6E526BAA2D30332C00ADEED2 /* config.cpython-39.pyc */,
-				6E526BAB2D30332C00ADEED2 /* config.cpython-312.pyc */,
-				6E526BAC2D30332C00ADEED2 /* models.cpython-39.pyc */,
-				6E526BAD2D30332C00ADEED2 /* models.cpython-312.pyc */,
-			);
-			path = __pycache__;
-			sourceTree = "<group>";
-		};
 		6E526BB12D30332C00ADEED2 /* instance */ = {
 			isa = PBXGroup;
 			children = (
-				6E526BAF2D30332C00ADEED2 /* 127.0.0.1:5000 */,
-				6E526BB02D30332C00ADEED2 /* db.sqlite */,
 			);
 			path = instance;
 			sourceTree = "<group>";
@@ -145,7 +117,6 @@
 		6E526BB92D30332C00ADEED2 /* Backend */ = {
 			isa = PBXGroup;
 			children = (
-				6E526BAE2D30332C00ADEED2 /* __pycache__ */,
 				6E526BB12D30332C00ADEED2 /* instance */,
 				6E526BB32D30332C00ADEED2 /* app.py */,
 				6E526BB42D30332C00ADEED2 /* config.py */,
@@ -331,17 +302,10 @@
 				6E526BD12D30332C00ADEED2 /* config.py in Resources */,
 				6E526BD02D30332C00ADEED2 /* app.py in Resources */,
 				6E526BD42D30332C00ADEED2 /* models.py in Resources */,
-				6E526BCB2D30332C00ADEED2 /* models.cpython-39.pyc in Resources */,
 				6E526BD62D30332C00ADEED2 /* Preview Assets.xcassets in Resources */,
 				6E526BD32D30332C00ADEED2 /* init_db.py in Resources */,
-				6E526BCE2D30332C00ADEED2 /* db.sqlite in Resources */,
 				6E526BD72D30332C00ADEED2 /* Assets.xcassets in Resources */,
-				6E526BCC2D30332C00ADEED2 /* models.cpython-312.pyc in Resources */,
-				6E526BCD2D30332C00ADEED2 /* 127.0.0.1:5000 in Resources */,
-				6E526BC82D30332C00ADEED2 /* app.cpython-312.pyc in Resources */,
 				6E526BD52D30332C00ADEED2 /* package-lock.json in Resources */,
-				6E526BCA2D30332C00ADEED2 /* config.cpython-312.pyc in Resources */,
-				6E526BC92D30332C00ADEED2 /* config.cpython-39.pyc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
