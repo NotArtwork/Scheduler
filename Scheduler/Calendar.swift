@@ -61,7 +61,6 @@ struct TrainingScheduleView: View {
                 }
             }
             .background(Color(UIColor.systemGroupedBackground))
-            .edgesIgnoringSafeArea(.top)
         }
     }
 }
