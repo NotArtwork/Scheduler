@@ -55,6 +55,16 @@ struct TrainingScheduleView: View {
                                     .font(.caption)
                                     .foregroundColor(.red)
                             }
+                            Button(action: {
+                                
+                            }) {
+                                Text("Book")
+                                    .foregroundColor(.white)
+                                    .padding(.horizontal, 20)
+                                    .padding(.vertical, 10)
+                                    .background(Color.blue)
+                                    .cornerRadius(40)
+                            }
                         }
                         .padding(.vertical, 5)
                     }
