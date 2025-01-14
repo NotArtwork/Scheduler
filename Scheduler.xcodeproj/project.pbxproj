@@ -11,7 +11,6 @@
 		4370C9DB2D36CC930064A88A /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4370C9DA2D36CC930064A88A /* Profile.swift */; };
 		6E526BD02D30332C00ADEED2 /* app.py in Resources */ = {isa = PBXBuildFile; fileRef = 6E526BB32D30332C00ADEED2 /* app.py */; };
 		6E526BD12D30332C00ADEED2 /* config.py in Resources */ = {isa = PBXBuildFile; fileRef = 6E526BB42D30332C00ADEED2 /* config.py */; };
-		6E526BD32D30332C00ADEED2 /* init_db.py in Resources */ = {isa = PBXBuildFile; fileRef = 6E526BB62D30332C00ADEED2 /* init_db.py */; };
 		6E526BD42D30332C00ADEED2 /* models.py in Resources */ = {isa = PBXBuildFile; fileRef = 6E526BB72D30332C00ADEED2 /* models.py */; };
 		6E526BD52D30332C00ADEED2 /* package-lock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6E526BB82D30332C00ADEED2 /* package-lock.json */; };
 		6E526BD62D30332C00ADEED2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E526BBA2D30332C00ADEED2 /* Preview Assets.xcassets */; };
@@ -52,7 +51,6 @@
 		4370C9DA2D36CC930064A88A /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		6E526BB32D30332C00ADEED2 /* app.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = app.py; sourceTree = "<group>"; };
 		6E526BB42D30332C00ADEED2 /* config.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = config.py; sourceTree = "<group>"; };
-		6E526BB62D30332C00ADEED2 /* init_db.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = init_db.py; sourceTree = "<group>"; };
 		6E526BB72D30332C00ADEED2 /* models.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = models.py; sourceTree = "<group>"; };
 		6E526BB82D30332C00ADEED2 /* package-lock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "package-lock.json"; sourceTree = "<group>"; };
 		6E526BBA2D30332C00ADEED2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -120,7 +118,6 @@
 				6E526BB12D30332C00ADEED2 /* instance */,
 				6E526BB32D30332C00ADEED2 /* app.py */,
 				6E526BB42D30332C00ADEED2 /* config.py */,
-				6E526BB62D30332C00ADEED2 /* init_db.py */,
 				6E526BB72D30332C00ADEED2 /* models.py */,
 				6E526BB82D30332C00ADEED2 /* package-lock.json */,
 			);
@@ -303,7 +300,6 @@
 				6E526BD02D30332C00ADEED2 /* app.py in Resources */,
 				6E526BD42D30332C00ADEED2 /* models.py in Resources */,
 				6E526BD62D30332C00ADEED2 /* Preview Assets.xcassets in Resources */,
-				6E526BD32D30332C00ADEED2 /* init_db.py in Resources */,
 				6E526BD72D30332C00ADEED2 /* Assets.xcassets in Resources */,
 				6E526BD52D30332C00ADEED2 /* package-lock.json in Resources */,
 			);
